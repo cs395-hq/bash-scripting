@@ -38,3 +38,25 @@ Here document to the file!
 Number of lines.
 It's three.
 EOF
+
+# Copying file descriptors
+echo "Some text" > tmp.log
+exec 3< tmp.log
+cat <&3
+
+# Close the file descriptor
+exec 3<&-
+rm tmp.log
+
+# Copying stdout to another file descriptor
+exec 3>&1
+exec 1>tmp.log
+echo "This will be written to tmp.log"
+# Get back to the original stdout
+exec 1>&3
+echo "This will be written to the original stdout"
+echo "Check the tmp.log file"
+cat tmp.log
+rm tmp.log
+
+
