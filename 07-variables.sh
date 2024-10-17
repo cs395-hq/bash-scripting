@@ -22,12 +22,14 @@ echo "no_quotes2: $no_quotes2 <--- This will not work as expected"
 echo "Script name: $0"
 echo "All positional parameters: $@" # In quotes, all the positional parameters are treated as separate string
 for i in "$@"; do
-    echo $i
+    # If you don't use quotes, 
+    # the value can be expanded such as * -> list of files
+    echo "$i" 
 done
 
 echo "All positional parameters: $*" # In quotes, all the positional parameters are treated as a single string
 for i in "$*"; do
-    echo $i
+    echo "$i"
 done
 
 echo "Number of positional parameters: $#"
