@@ -4,8 +4,8 @@
 echo "Looping using until"
 a=1
 until [ $a -eq 4 ]; do
-  printf "%d " $a
-  a=$((a+1))
+  printf "%d " $a # c-style printing
+  a=$((a+1)) # Another way of doing: a=$[$a + 1]
 done
 
 echo && echo "Looping using while"
