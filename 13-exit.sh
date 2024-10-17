@@ -15,8 +15,18 @@ set +e
 
 # The following example demonstrates how to exit a script if a file does not exist.
 rm "file-does-not-exist.txt"
+# If you want to do something upon a failed execution
+# of the last command in your script, you need to 
+# disable the shell option, "e" by set +e at the start 
+# of your script. Then you can get the exit status
+# of the last command by using $?. If it's not 0,
+# it means it failed.
+exit_status=$?
+if [ $exit_status != 0 ]; then
+	echo "I failed";
+	# exit 1; # You can exit here with an error or continue
+fi
 echo "If set +e is set, this will print."
-
 
 # Other exit statuses
 # exit 0 # Success
