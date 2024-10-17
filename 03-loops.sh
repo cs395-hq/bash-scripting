@@ -6,13 +6,19 @@ a=1
 until [ $a -eq 4 ]; do
   printf "%d " $a # c-style printing
   a=$((a+1)) # Another way of doing: a=$[$a + 1]
+  if [ $a -eq 3 ]; then
+    break # exit the loop
+  fi
 done
 
 echo && echo "Looping using while"
-a=1
+a=0
 while [ $a -lt 4 ]; do
-  printf "%d " $a
   a=$((a+1))
+  if [ $a -eq 2 ]; then
+    continue # jump to the next iteration, don't run the following
+  fi
+  printf "%d " $a
 done
 
 echo && echo "Looping using for"
