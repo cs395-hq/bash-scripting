@@ -25,7 +25,7 @@ square_brackets() {
 
 
 parentheses() {
-	echo "Parentheses"
+	echo "Parentheses - C Style "
 	# (( )) is used for arithmetic evaluation.
 	# Return a status of 0 or 1 depending on the evaluation of the arithmetic expression.
 	# For the list of operators, see https://www.gnu.org/software/bash/manual/html_node/Shell-Arithmetic.html
@@ -42,8 +42,8 @@ parentheses() {
 	    echo "my_var shifted left by 1 is 4."
 	fi
 
-	permission_bits=755
-	if (( permission_bits & 400 )); then
+	permission_bit=7
+	if (( permission_bit & 4 )); then
 	    echo "User has read permission."
 	fi
 }
@@ -62,7 +62,7 @@ priority() {
 	fi
 
 	# The first comparison is false, so the second comparison is evaluated.
-	if [[ "x" == "y" || $(echo 1) ]]; then
+	if [[ "x" == "y" || $(echo 1) == 1 ]]; then
 		echo "This will be printed (2)."
 	fi
 
@@ -74,11 +74,13 @@ priority() {
 
 	# The first command will exit with an error (a subshell)
 	# The second command will be executed, thanks to the || operator.
-	if ( echo "Exit with error!"; exit 1; ) || echo "OoOoOo"; then
+	if ( echo "Exit with error!"; exit 1; ) || echo "The second part - lazy evaluation"; then
 		echo "This will be printed (4)."
 	fi
 }
 
-square_brackets
+# to run the functions, un-comment the
+# # to run the functions, un-comment them
+#square_brackets
 parentheses
-priority
+#priority

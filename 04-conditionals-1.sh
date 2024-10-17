@@ -80,12 +80,14 @@ case "$name" in
   Ayse)
     echo "Hello Ayse"
     ;;
-  *)
+  *) # this is the default
     echo "Hello Stranger"
     ;;
 esac
 
-# create menu
+# select command create a menu
+# and lets you select the option
+# by entering the item number
 select name in Can Ayse; do
   case "$name" in
     Can)
@@ -101,6 +103,3 @@ select name in Can Ayse; do
   break
 done
 
-# regex matching
-# [[ "string" =~ regex ]]
-# For more information: man 3 regex
